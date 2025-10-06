@@ -16,6 +16,9 @@ The *arp* library structures command-line interfaces from compositions of nodes.
 ## Example
 
 ```cpp
+#include <arp/arp.hpp>
+#include <fmt/base.h>
+
 int main(int argc, const char** argv) {
   using namespace arp;
 
