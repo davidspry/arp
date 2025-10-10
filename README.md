@@ -1,6 +1,6 @@
 # arp
 
-Stack-based command-line argument-parser for C++23.
+Command-line argument-parser for C++23
 
 ## Nodes
 
