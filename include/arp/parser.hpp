@@ -205,6 +205,9 @@ auto Parser<T...>::parse_double_type(std::string_view token, std::span<const cha
     using Node = std::tuple_element_t<K, std::tuple<T...>>;
     Node& node = std::get<K>(m_nodes);
 
+    if constexpr (IsCmd<Node>::value || IsPos<Node>::value)
+      return std::nullopt;
+
     if (match || error)
       return std::nullopt;
 
@@ -250,6 +253,9 @@ auto Parser<T...>::parse_single_type(std::string_view token, std::span<const cha
     template_for<sizeof...(T)>([&, this]<size_t K> -> std::optional<ParserError> {
       using Node = std::tuple_element_t<K, std::tuple<T...>>;
       Node& node = std::get<K>(m_nodes);
+
+      if constexpr (IsCmd<Node>::value || IsPos<Node>::value)
+        return std::nullopt;
 
       if (match || error)
         return std::nullopt;
