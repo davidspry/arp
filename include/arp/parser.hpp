@@ -44,10 +44,11 @@ struct ParserError {
 };
 
 template<class... T>
-struct Parser final {
+class Parser final {
   std::tuple<T...> m_nodes;
   std::bitset<sizeof...(T)> m_parsed;
 
+public:
   Parser(T&&... nodes)
     : m_nodes(std::forward_as_tuple(std::forward<T>(nodes)...))
   {}
