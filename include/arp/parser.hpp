@@ -296,10 +296,10 @@ auto Parser<T...>::parse_cmd_or_pos(std::string_view token, std::span<const char
     if (match || error)
       return std::nullopt;
 
-    if (match = Meta<Node>::keyed_by(key); !match)
-      return std::nullopt;
-
     if constexpr (IsCmd<Node>::value) {
+      if (match = Meta<Node>::keyed_by(key); !match)
+        return std::nullopt;
+
       if (error = node.parser.parse(consume_all(args)); !error) {
         node.invoked = true;
         m_parsed[K] = true;
