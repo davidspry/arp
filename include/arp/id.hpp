@@ -11,7 +11,7 @@ template<size_t N> requires (N != 0)
 struct Id final {
   std::array<char, N> buffer;
 
-  constexpr Id(char x): buffer({x}) {}
+  constexpr Id(char x): buffer({x, 0}) {}
   constexpr Id(const char(&str)[N]): buffer(std::to_array(str)) {}
 
   constexpr auto id() const -> std::string_view                  { return {buffer.data(), 1}; }
@@ -23,6 +23,6 @@ struct Id final {
   constexpr bool operator==(const Id<M>&) const { return false; }
 };
 
-Id(char) -> Id<1>;
+Id(char) -> Id<2>;
 
 }
