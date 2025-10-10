@@ -134,7 +134,7 @@ std::optional<ParserError> Parser<T...>::parse(std::span<const char* const> args
 
 template<class... T>
 std::optional<ParserError> Parser<T...>::parse(int argc, const char** argv) {
-  if (argc < 1)
+  if (argc <= 0)
     return ParserError{
       .err = ParserError::invalid_argc,
       .msg = fmt::format("argc is {}", !argc ? "zero" : "negative")
